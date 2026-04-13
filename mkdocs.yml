@@ -1,0 +1,247 @@
+# 该配置文件已弃用, 请使用 zensical.toml
+
+# 一些配置教程
+# https://squidfunk.github.io/mkdocs-material
+# https://www.mkdocs.org
+# https://zhuanlan.zhihu.com/p/383582472
+# https://markdown-docs-zh.readthedocs.io/zh-cn/latest
+# https://docs.netlify.com/frameworks/#mkdocs
+# https://www.starfallprojects.co.uk/projects/deploy-host-docs/deploy-mkdocs-material-vercel/
+
+site_name: SD Note
+
+theme:
+  name: material
+  language: zh
+  features:
+    # - navigation.instant # 即时加载, 在 Firefox 下有内存泄露的问题
+    - navigation.instant.prefetch # 即时预加载
+    - navigation.instant.progress # 加载进度显示
+    - navigation.instant.preview # 即时预览
+    - navigation.tracking # 锚点跟踪
+    - navigation.tabs # 导航选项卡
+    - navigation.tabs.sticky # 始终显示导航选项卡
+    - navigation.path # 显示导航路径
+    # - navigation.prune # 导航修剪
+    # - navigation.indexes # 章节索引页
+    - navigation.expand # 侧边栏展开
+    - navigation.footer # 启用页脚
+    - navigation.top # 返回顶部按钮
+    - search.suggest # 搜索建议
+    - search.highlight # 搜索高亮
+    - search.share # 搜索共享
+    - content.action.edit # 编辑本页按钮
+    # - content.action.view # 查看本页源代码
+    - content.code.copy # 代码块复制按钮
+    - content.code.annotate # 代码注解
+    - content.tabs.link # 链接的内容选项卡
+    - content.tooltips # 改进的工具提示
+
+  palette: # 颜色
+
+    # 自动模式的配色切换
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: 跟随系统配色
+
+    # 浅色模式的配色切换
+    - media: "(prefers-color-scheme: light)"
+      scheme: default # 配色
+      primary: white # 原色
+      accent: light blue # 强调色
+      toggle:
+        icon: material/brightness-7
+        name: 浅色主题
+
+    # 深色模式的配色切换
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: 黑暗主题
+
+  logo: assets/site_resources/logo.png
+  favicon: assets/site_resources/favicon.png
+
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+plugins:
+  - search # 搜索功能
+  - tags # 标签插件
+  - git-revision-date-localized:
+      enable_creation_date: false # 显示与页面关联的文件的创建日期
+      type: iso_date # 时间格式
+  - glightbox # 图像缩放
+  # - git-committers:
+  #   repository: licyk/SDNote
+  #   branch: main
+  # - git-authors
+
+extra:
+  homepage: https://sdnote.netlify.app
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/licyk
+      name: Github
+    - icon: fontawesome/brands/bilibili
+      link: https://space.bilibili.com/46497516
+      name: 哔哩哔哩
+    - icon: fontawesome/solid/blog
+      link: https://licyk.netlify.app
+      name: licyk的小窝
+    - icon: fontawesome/solid/envelope
+      link: mailto:licyk233@163.com
+      name: 联系邮箱
+
+  generator: true # 生成器通知
+
+copyright: Copyright &copy; 2024 licyk
+
+repo_url: https://github.com/licyk/SDNote
+repo_name: licyk/SDNote
+edit_uri: edit/main/docs/
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex
+  - pymdownx.b64
+  - pymdownx.betterem
+  - pymdownx.blocks.admonition
+  - pymdownx.blocks.definition
+  - pymdownx.blocks.details
+  - pymdownx.blocks.html
+  - pymdownx.blocks.tab
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.escapeall
+  - pymdownx.extra
+  - pymdownx.highlight
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.pathconverter
+  - pymdownx.progressbar
+  - pymdownx.saneheaders
+  - pymdownx.smartsymbols
+  - pymdownx.striphtml
+  - pymdownx.tasklist
+  - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - abbr
+  - admonition
+  - toc:
+      permalink: ☍
+      permalink_title: 锚链接到此处
+      title: 目录
+  - tables
+
+nav:
+- "主页": index.md
+- "部署与使用":
+  - "前言": guide/index.md
+  - "需求与准备": guide/requirement/index.md
+  - "模型指南":
+    - "模型种类": guide/model/index.md
+    - "模型下载": guide/model/download_model.md
+  - "SD WebUI 部署与使用":
+    - "概述": guide/sd_webui/index.md
+    - "部署": guide/sd_webui/install.md
+    - "前期配置": guide/sd_webui/configure.md
+    - "文生图": guide/sd_webui/t2i.md
+    - "提示词书写": guide/sd_webui/prompt.md
+    - "高级提示词语法": guide/sd_webui/advance_prompt.md
+    - "画师提示词应用": guide/sd_webui/artist_prompt.md
+    - "图生图": guide/sd_webui/i2i.md
+    - "LoRA 应用": guide/sd_webui/lora.md
+    - "放大图片": guide/sd_webui/upscale.md
+    - "ControlNet 应用": guide/sd_webui/controlnet.md
+    - "杂项": guide/sd_webui/extra.md
+  - "SD WebUI Forge 部署与使用":
+    - "概述": guide/sd_webui_forge/index.md
+    - "部署": guide/sd_webui_forge/install.md
+    - "常见功能使用": guide/sd_webui_forge/common_use.md
+    - "FLUX 模型使用": guide/sd_webui_forge/flux.md
+    - "显存优化": guide/sd_webui_forge/video_momory_optimization.md
+    - "内置扩展使用": guide/sd_webui_forge/use_build_in_extension.md
+  - "ComfyUI 部署与使用":
+    - "概述": guide/comfyui/index.md
+    - "部署": guide/comfyui/install.md
+    - "界面操作": guide/comfyui/interface_operation.md
+    - "导入工作流": guide/comfyui/input_workflows.md
+    - "搭建工作流": guide/comfyui/build_workflow.md
+    - "节点编写指南": guide/comfyui/node_writing_guidelines.md
+    - "杂项": guide/comfyui/extra.md
+  - "InvokeAI 部署与使用":
+    - "概述": guide/invokeai/index.md
+    - "安装": guide/invokeai/install.md
+    - "界面": guide/invokeai/interface.md
+    - "模型管理": guide/invokeai/model_manager.md
+    - "显存优化": guide/invokeai/low_vram_mode.md
+    - "文生图": guide/invokeai/t2i.md
+    - "统一画布": guide/invokeai/canvas.md
+    - "放大": guide/invokeai/upscale.md
+    - "工作流": guide/invokeai/workflow.md
+    - "杂项": guide/invokeai/extra.md
+- "绘世启动器使用":
+  - "概述": sd_launcher/index.md
+  - "部署功能":
+    - "部署功能": sd_launcher/install/index.md
+    - "安装流程": sd_launcher/install/process.md
+  - "高级选项":
+    - "高级选项": sd_launcher/advance/index.md
+    - "环境维护": sd_launcher/advance/env.md
+    - "补丁管理": sd_launcher/advance/patch.md
+  - "版本管理":
+    - "简述": sd_launcher/ver_manager/index.md
+    - "内核": sd_launcher/ver_manager/kernel.md
+    - "扩展": sd_launcher/ver_manager/extension.md
+    - "安装新扩展": sd_launcher/ver_manager/install.md
+  - "实用功能":
+    - "疑难解答": sd_launcher/other/faq.md
+    - "模型管理": sd_launcher/other/model.md
+    - "控制台": sd_launcher/other/terminal.md
+    - "启动器设置": sd_launcher/other/setting.md
+    - "配置 ZLUDA": sd_launcher/other/zluda.md
+    - "杂项": sd_launcher/other/index.md
+# - "模型训练":
+#   - "概述": train/index.md
+# - "基础理论":
+#   - "概述": theory/index.md
+# TODO: 先鸽着, 有空再更新
+- "使用疑难解答":
+  - "概述": help/index.md
+  - "绘世启动器": help/sd_launcher.md
+  - "SD WebUI": help/sd_webui.md
+  - "ComfyUI": help/comfyui.md
+  - "其他问题": help/other.md
+  - "AMD 运行问题": help/amd_info.md
+  - "Intel 运行问题": help/intel_info.md
+- "附录": appendix.md
+- "关于": about.md
