@@ -13,6 +13,7 @@ site_name: SD Note
 theme:
   name: material
   language: zh
+  custom_dir: overrides
   features:
     # - navigation.instant # 即时加载, 在 Firefox 下有内存泄露的问题
     - navigation.instant.prefetch # 即时预加载
